@@ -40,7 +40,7 @@ git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```
 
-7. Create your SSH Key, just follow the instructions, no need to provide filename and passphrase. In the Git Bash Terminal, perform command:
+7. Create your SSH Key, just follow the instructions, no need to provide filename and passphrase (Just Enter > Enter). In the Git Bash Terminal, perform command:
 ```bash
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
