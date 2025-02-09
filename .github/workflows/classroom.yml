@@ -1,4 +1,4 @@
-name: Autograding Java HelloWorld
+name: Autograding Java VariablesAndCaseSensitivity
 
 on: ["push", "repository_dispatch"]
 
@@ -6,6 +6,7 @@ permissions:
   checks: write
   actions: read
   contents: read
+  statuses: write
 
 jobs:
   run-autograding-tests:
@@ -19,18 +20,15 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'temurin' # Or 'zulu' if you prefer
+          java-version: '17'  # Or your preferred version
+          distribution: 'temurin' # Or 'zulu'
 
-      - name: Compile Java code
-        run: javac HelloWorld.java
-
-      - name: File Existence Check - HelloWorld.java
+      - name: File Existence Check
         id: file-existence-check
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: File Existence Check - HelloWorld.java
-          command: "test -f HelloWorld.java"
+          test-name: File Existence Check
+          command: "test -f VariablesAndCaseSensitivity.java"
           timeout: 10
           max-score: 10
 
@@ -39,43 +37,25 @@ jobs:
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: Compilation Check
-          command: "javac HelloWorld.java" # Check if compilation succeeds
+          command: "javac VariablesAndCaseSensitivity.java"
           timeout: 10
-          max-score: 10
+          max-score: 10 # Compilation failure should usually be a zero score
 
-      - name: Run Check - HelloWorld.java
-        id: run-check
+      - name: Execution Check
+        id: execution-check
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Run Check - HelloWorld.java
-          command: "java HelloWorld"
+          test-name: Run Check - VariablesAndCaseSensitivity.java
+          setup-command: "chmod +x ./run_tests.sh" # If you have a test script
+          command: "./run_tests.sh" # Likely contains the actual tests
           timeout: 10
-          max-score: 10
-
-      - name: Output Check - HelloWorld.java
-        id: output-check
-        uses: classroom-resources/autograding-command-grader@v1
-        with:
-          test-name: Output Check - HelloWorld.java
-          command: "java HelloWorld"
-          timeout: 10
-          max-score: 70
-        env:
-          EXPECTED_OUTPUT: "Hello, World!" # Define the expected output
-        run: |
-          ACTUAL_OUTPUT=$(java HelloWorld)
-          if [[ "$ACTUAL_OUTPUT" == "$EXPECTED_OUTPUT" ]]; then
-            echo "::set-output name=result::success"
-          else
-            echo "::set-output name=result::failure"
-          fi
+          max-score: 80
 
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
           FILE-EXISTENCE-CHECK_RESULTS: "${{ steps.file-existence-check.outputs.result }}"
           COMPILATION-CHECK_RESULTS: "${{ steps.compilation-check.outputs.result }}"
-          RUN-CHECK_RESULTS: "${{ steps.run-check.outputs.result }}"
-          OUTPUT-CHECK_RESULTS: "${{ steps.output-check.outputs.result }}"
+          EXECUTION-CHECK_RESULTS: "${{ steps.execution-check.outputs.result }}"
         with:
-          runners: file-existence-check, compilation-check, run-check, output-check
+          runners: file-existence-check, compilation-check, execution-check
