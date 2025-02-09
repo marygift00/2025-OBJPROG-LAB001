@@ -13,7 +13,7 @@ expected="Hello, World!"
 if [ "$output" == "$expected" ]; then
   echo "Tests passed"
   exit 0
-else
+else 
   echo "Tests failed"
   echo "Expected: $expected"
   echo "Got: $output"
