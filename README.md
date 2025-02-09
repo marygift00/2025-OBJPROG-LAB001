@@ -1,4 +1,4 @@
-# 2025-OBJPROG-S01-E01
+# 2025-OBJPROG-LAB001
 Laboratory # 01 - Java Hello World Program and Introduction to Git
 
 # **Hello World Assignment**
