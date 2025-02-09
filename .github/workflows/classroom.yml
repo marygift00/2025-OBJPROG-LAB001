@@ -1,61 +1,41 @@
-name: Autograding Java VariablesAndCaseSensitivity
-
+name: Autograding Tests
 on: ["push", "repository_dispatch"]
-
 permissions:
   checks: write
   actions: read
   contents: read
   statuses: write
-
 jobs:
   run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'  # Or your preferred version
-          distribution: 'temurin' # Or 'zulu'
-
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
       - name: File Existence Check
         id: file-existence-check
         uses: classroom-resources/autograding-command-grader@v1
         with:
           test-name: File Existence Check
-          command: "test -f VariablesAndCaseSensitivity.java"
+          command: "test -f HelloWorld.java"
           timeout: 10
           max-score: 10
-
-      - name: Compilation Check
-        id: compilation-check
-        uses: classroom-resources/autograding-command-grader@v1
-        with:
-          test-name: Compilation Check
-          command: "javac VariablesAndCaseSensitivity.java"
-          timeout: 10
-          max-score: 10 # Compilation failure should usually be a zero score
-
       - name: Execution Check
         id: execution-check
         uses: classroom-resources/autograding-command-grader@v1
         with:
-          test-name: Run Check - VariablesAndCaseSensitivity.java
-          setup-command: "chmod +x ./run_tests.sh" # If you have a test script
-          command: "./run_tests.sh" # Likely contains the actual tests
+          test-name: Run Check - HelloWorld.java
+          setup-command: "chmod +x ./run_tests.sh"
+          command: "./run_tests.sh"
           timeout: 10
-          max-score: 80
-
+          max-score: 90
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
-          FILE-EXISTENCE-CHECK_RESULTS: "${{ steps.file-existence-check.outputs.result }}"
-          COMPILATION-CHECK_RESULTS: "${{ steps.compilation-check.outputs.result }}"
-          EXECUTION-CHECK_RESULTS: "${{ steps.execution-check.outputs.result }}"
+          FILE-EXISTENCE-CHECK_RESULTS: "${{steps.file-existence-check.outputs.result}}"
+          EXECUTION-CHECK_RESULTS: "${{steps.execution-check.outputs.result}}"
         with:
-          runners: file-existence-check, compilation-check, execution-check
+          runners: file-existence-check,execution-check
