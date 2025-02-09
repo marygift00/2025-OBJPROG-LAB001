@@ -1,10 +1,6 @@
 # 2025-OBJPROG-LAB001
 Laboratory # 01 - Java Hello World Program and Introduction to Git
 
-# **Hello World Assignment**
-
-Welcome to your first GitHub Classroom assignment! Follow the instructions carefully to complete and submit your work.
-
 ---
 
 ## **Instructions**
