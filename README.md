@@ -1,5 +1,5 @@
 # 2025-OBJPROG-S01-E01
-GitHub Classroom Assignment for a Java Hello World Program and Introduction to Git
+Laboratory # 01 - Java Hello World Program and Introduction to Git
 
 # **Hello World Assignment**
 
@@ -68,19 +68,61 @@ ssh -T git@github.com
 3. Open your terminal (or Git Bash, Command Prompt, or PowerShell) and run:
 
 ```bash
-git clone https://github.com/PLMUN-CITCS/objprog-s02-e01-[your username].git
+git clone <your_generated_remote_repo_url>
 ```
 
 4. Navigate into the cloned folder:
 
 ```bash
-cd objprog-s02-e01-[your username]
+cd <your_cloned_local_repo_folder>
 ```
 
 ### **Step 3: Complete the Assignment**
 
-1. Write a "Hello World" Program. Create a simple program in Java Programming Language. Save the file inside the repository folder.
-`HelloWorld.java` (Java)
+# **Laboratory # 01 - Java Hello World Program and Introduction to Git**
+
+**Objective**
+The goal of this exercise is to create a simple Java program that prints "Hello, World!" to the console. This task introduces you to Java syntax, basic program structure, and proper project organization.
+
+**Folder Structure and Naming Conventions**
+**Folder Structure**
+For this exercise, you will place the Java file directly in your cloned local repository. The structure will be as follows:
+```
+/YourRepository
+└── HelloWorld.java
+```
+*YourRepository: The root folder of your project (for example, a Git repository).*
+
+**Naming Conventions**
+- File Name: Name the file HelloWorld.java. In Java, the public class name must match the filename.
+- Class Name: The class should be named HelloWorld (using PascalCase).
+- Method Name: The entry point is public static void main(String[] args), following standard Java conventions.
+
+**Desired Output**
+When you compile and run your Java program, the console should display the following output:
+```
+Hello, World!
+```
+
+**Notable Observations**
+- File and Class Name Matching: Ensure that the filename (HelloWorld.java) exactly matches the public class name HelloWorld.
+- Compilation and Execution Process: The program must be compiled using javac before it can be executed with java.
+- Simple Output Method: The program uses System.out.println for output, a standard approach for displaying text on the console in Java.
+
+**Java Best Practices**
+- Code Organization: For simple projects, placing files in the root of the repository is acceptable. As your projects grow, consider organizing code into packages and separate folders.
+- Comments and Documentation: Even simple programs benefit from clear comments. For example, you might add a comment above the main method to explain its purpose.
+- Consistent Formatting: Use proper indentation and spacing. Modern IDEs (such as IntelliJ IDEA or Eclipse) offer auto-formatting features to help maintain consistency.
+- Version Control: Use version control (e.g., Git) to manage changes and collaborate with others. Regular commits with clear messages are a good habit.
+
+**Step-by-Step Instructions**
+
+1. Create the Java File
+- Inside the root of your repository (/YourRepository), create a new file named HelloWorld.java
+
+2. Write the Code
+- Open HelloWorld.java in your favorite text editor or IDE.
+- Enter the following code:
 ```java
 public class HelloWorld {
   public static void main(String[] args) {
@@ -88,6 +130,27 @@ public class HelloWorld {
   }
 }
 ```
+
+3. Compile the Program
+- Open a terminal or command prompt.
+- Navigate to the repository folder where HelloWorld.java is located.
+- Compile the program by running:
+```bash
+javac HelloWorld.java
+```
+
+4. Run the Program
+- After successful compilation, run the program with
+```bash
+java HelloWorld
+```
+- The console should display
+```bash
+Hello, World!
+```
+
+**Conclusiom**
+This exercise demonstrates the essential steps required to create, compile, and run a simple Java program. By following these instructions, you create a well-organized project with clear folder structure and naming conventions, adhere to Java best practices, and gain familiarity with the process of building and executing Java applications. This foundation will serve as a stepping stone to more complex programming challenges in Java.
 
 ### **Step 4: Push Changes to GitHub**
 Once you've completed your changes, follow these steps to upload your work to your GitHub repository.
@@ -124,6 +187,6 @@ git push origin main
 ### **Step 5: Submit Your Repository Link**
 Once your changes have been pushed:
 1. Visit your GitHub repository online.
-2. Copy the repository URL from your browser (e.g., https://github.com/PLMUN-CITCS/objprog-s02-e01-[your username).
+2. Copy the repository URL from your browser (e.g., https://github.com/PLMUN-CITCS/your_remote_repo_url).
 3. Submit the repository link to your instructor via the classroom portal or as instructed.
 
